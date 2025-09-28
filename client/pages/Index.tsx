@@ -28,7 +28,9 @@ export default function Index() {
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl bg-[#0a0a0a] p-5 text-foreground shadow-xl ring-1 ring-black/10">
               <div className="flex items-center justify-between">
-                <div className="text-sm text-muted-foreground">Website traffic</div>
+                <div className="text-sm text-muted-foreground">
+                  Website traffic
+                </div>
                 <span className="h-6 rounded-full bg-primary/20 px-2 text-xs font-medium text-primary-foreground/90 ring-1 ring-white/10">
                   12k
                 </span>
@@ -59,30 +61,58 @@ export default function Index() {
           </div>
           <form className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm">Email address</Label>
+              <Label htmlFor="email" className="text-sm">
+                Email address
+              </Label>
               <div className="relative">
-                <Mail className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
-                <Input id="email" type="email" placeholder="johndoe@gmail.com" className="pl-10" />
+                <Mail
+                  className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                  size={18}
+                />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="johndoe@gmail.com"
+                  className="pl-10"
+                />
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-sm">Password</Label>
+              <Label htmlFor="password" className="text-sm">
+                Password
+              </Label>
               <div className="relative">
-                <Lock className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
-                <Input id="password" type="password" placeholder="••••••••" className="pl-10" />
+                <Lock
+                  className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                  size={18}
+                />
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  className="pl-10"
+                />
               </div>
             </div>
-            <Button className="w-full h-11 rounded-full text-base font-semibold">Sign in</Button>
+            <Button className="w-full h-11 rounded-full text-base font-semibold">
+              Sign in
+            </Button>
           </form>
           <p className="mt-4 text-center text-sm text-muted-foreground">
-            Don’t have an account? <Link to="/signup" className="text-primary hover:underline">Sign up</Link>
+            Don’t have an account?{" "}
+            <Link to="/signup" className="text-primary hover:underline">
+              Sign up
+            </Link>
           </p>
           <div className="my-6 flex items-center gap-4">
             <div className="h-px flex-1 bg-border" />
             <span className="text-xs text-muted-foreground">OR</span>
             <div className="h-px flex-1 bg-border" />
           </div>
-          <Button variant="outline" className="w-full h-11 rounded-full bg-background">
+          <Button
+            variant="outline"
+            className="w-full h-11 rounded-full bg-background"
+          >
             <Chrome className="mr-2" size={18} /> Log in with Google
           </Button>
         </div>
