@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Chrome, Lock, Mail } from "lucide-react";
 
 export default function Index() {
+  const navigate = useNavigate();
   return (
     <main className="min-h-screen grid lg:grid-cols-2">
       {/* Left: Marketing */}
