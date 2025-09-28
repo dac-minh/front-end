@@ -30,7 +30,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
             <SidebarItem icon={LineChart} label="Chart" />
             <SidebarItem icon={Wallet} label="Wallet" />
             <SidebarItem icon={Newspaper} label="News" />
-            <SidebarItem icon={Settings} label="Settings" />
+            <SidebarItem icon={Settings} label="Settings" to="/settings" />
           </nav>
           <div className="mt-8 rounded-xl bg-background/40 p-3 text-sm ring-1 ring-white/10">
             <div className="mb-2 text-muted-foreground">Quick actions</div>
