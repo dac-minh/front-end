@@ -2,10 +2,23 @@ import DashboardLayout from "@/layouts/DashboardLayout";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const AssetPill = ({ name, code, pct, color }: { name: string; code: string; pct: number; color: string }) => (
+const AssetPill = ({
+  name,
+  code,
+  pct,
+  color,
+}: {
+  name: string;
+  code: string;
+  pct: number;
+  color: string;
+}) => (
   <div className="flex items-center justify-between rounded-xl bg-background/40 px-3 py-2 ring-1 ring-white/10">
     <div className="flex items-center gap-3">
-      <span className="inline-flex size-7 items-center justify-center rounded-full" style={{ backgroundColor: color }} />
+      <span
+        className="inline-flex size-7 items-center justify-center rounded-full"
+        style={{ backgroundColor: color }}
+      />
       <div>
         <div className="text-xs text-muted-foreground leading-4">{name}</div>
         <div className="text-[10px] text-muted-foreground/70">{code}</div>
@@ -22,20 +35,66 @@ export default function Dashboard() {
       <div className="grid gap-6 md:grid-cols-12">
         <div className="md:col-span-12 rounded-2xl bg-[#101010] p-6 ring-1 ring-white/10">
           <div className="text-sm text-muted-foreground">TOTAL BALANCE</div>
-          <div className="mt-1 text-4xl sm:text-5xl font-extrabold tracking-tight">$154,510<span className="text-white/40 text-2xl align-top">.00</span></div>
+          <div className="mt-1 text-4xl sm:text-5xl font-extrabold tracking-tight">
+            $154,510
+            <span className="text-white/40 text-2xl align-top">.00</span>
+          </div>
           <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
             {[
-              { name: "Bitcoin", code: "BTC", value: "$52,291", change: "+0.25%", color: "#f2b705" },
-              { name: "Litecoin", code: "LTC", value: "$8,291", change: "+0.25%", color: "#b0e3ff" },
-              { name: "Ethereum", code: "ETH", value: "$28,291", change: "+0.25%", color: "#7cc7ff" },
-              { name: "Solana", code: "SOL", value: "$14,291", change: "+0.15%", color: "#16a34a" },
-              { name: "BNB", code: "BNB", value: "$9,022", change: "-0.10%", color: "#facc15" },
-              { name: "Cardano", code: "ADA", value: "$3,991", change: "+0.05%", color: "#60a5fa" },
+              {
+                name: "Bitcoin",
+                code: "BTC",
+                value: "$52,291",
+                change: "+0.25%",
+                color: "#f2b705",
+              },
+              {
+                name: "Litecoin",
+                code: "LTC",
+                value: "$8,291",
+                change: "+0.25%",
+                color: "#b0e3ff",
+              },
+              {
+                name: "Ethereum",
+                code: "ETH",
+                value: "$28,291",
+                change: "+0.25%",
+                color: "#7cc7ff",
+              },
+              {
+                name: "Solana",
+                code: "SOL",
+                value: "$14,291",
+                change: "+0.15%",
+                color: "#16a34a",
+              },
+              {
+                name: "BNB",
+                code: "BNB",
+                value: "$9,022",
+                change: "-0.10%",
+                color: "#facc15",
+              },
+              {
+                name: "Cardano",
+                code: "ADA",
+                value: "$3,991",
+                change: "+0.05%",
+                color: "#60a5fa",
+              },
             ].map((a, idx) => (
-              <Link key={idx} to={`/chart/${a.code}`} className="rounded-xl bg-[#0f0f0f] p-4 ring-1 ring-white/10 transition hover:bg-white/5">
+              <Link
+                key={idx}
+                to={`/chart/${a.code}`}
+                className="rounded-xl bg-[#0f0f0f] p-4 ring-1 ring-white/10 transition hover:bg-white/5"
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex size-6 rounded-full" style={{ backgroundColor: a.color }} />
+                    <span
+                      className="inline-flex size-6 rounded-full"
+                      style={{ backgroundColor: a.color }}
+                    />
                     <span className="text-sm text-white/90">{a.name}</span>
                   </div>
                   <ChevronRight size={16} className="text-white/30" />
@@ -63,21 +122,34 @@ export default function Dashboard() {
           <div className="mb-2 flex items-center justify-between">
             <div className="text-sm text-muted-foreground">Chart</div>
             <div className="flex items-center gap-2">
-              {["1h","1d","1w","1m"].map((t) => (
-                <button key={t} className={`rounded-full px-3 py-1 text-xs ring-1 ring-white/10 ${t==="1w"?"bg-primary text-black":"bg-transparent text-white/70"}`}>{t}</button>
+              {["1h", "1d", "1w", "1m"].map((t) => (
+                <button
+                  key={t}
+                  className={`rounded-full px-3 py-1 text-xs ring-1 ring-white/10 ${t === "1w" ? "bg-primary text-black" : "bg-transparent text-white/70"}`}
+                >
+                  {t}
+                </button>
               ))}
             </div>
           </div>
           {/* Faux line chart */}
           <div className="relative h-[300px] overflow-hidden rounded-xl bg-gradient-to-b from-yellow-300/15 via-yellow-400/10 to-transparent">
-            <svg viewBox="0 0 600 200" className="absolute inset-0 h-full w-full opacity-90">
+            <svg
+              viewBox="0 0 600 200"
+              className="absolute inset-0 h-full w-full opacity-90"
+            >
               <defs>
                 <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
                   <stop stopColor="#fde047" offset="0%" />
                   <stop stopColor="transparent" offset="100%" />
                 </linearGradient>
               </defs>
-              <path d="M0,170 L40,160 L80,150 L120,155 L160,130 L200,145 L240,120 L280,160 L320,150 L360,170 L400,140 L440,120 L480,150 L520,130 L560,140 L600,110" stroke="#fde047" strokeWidth="3" fill="url(#g)" />
+              <path
+                d="M0,170 L40,160 L80,150 L120,155 L160,130 L200,145 L240,120 L280,160 L320,150 L360,170 L400,140 L440,120 L480,150 L520,130 L560,140 L600,110"
+                stroke="#fde047"
+                strokeWidth="3"
+                fill="url(#g)"
+              />
             </svg>
             <div className="absolute bottom-0 left-0 right-0 grid grid-cols-24 gap-1 px-3 pb-2">
               {Array.from({ length: 24 }).map((_, i) => (

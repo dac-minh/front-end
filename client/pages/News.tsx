@@ -15,7 +15,10 @@ const data: NewsRecord[] = [
     title: "Solana, FLOKI holders eye Rebel Satoshi amid bullish prediction",
     date: "Aug 7, 2024",
     source: "CryptoNews",
-    coins: [{ code: "SOL", pct: "+0.8%", up: true }, { code: "FLOKI", pct: "+1.5%", up: true }],
+    coins: [
+      { code: "SOL", pct: "+0.8%", up: true },
+      { code: "FLOKI", pct: "+1.5%", up: true },
+    ],
   },
   {
     id: "2",
@@ -36,15 +39,28 @@ const data: NewsRecord[] = [
     title: "NFTs are pumping again after a long bear",
     date: "Aug 4, 2024",
     source: "NFTDaily",
-    coins: [{ code: "ETH", pct: "+1.0%", up: true }, { code: "SOL", pct: "+0.5%", up: true }],
+    coins: [
+      { code: "ETH", pct: "+1.0%", up: true },
+      { code: "SOL", pct: "+0.5%", up: true },
+    ],
   },
 ];
 
-const CoinBadge = ({ code, pct, up = true }: { code: string; pct?: string; up?: boolean }) => (
+const CoinBadge = ({
+  code,
+  pct,
+  up = true,
+}: {
+  code: string;
+  pct?: string;
+  up?: boolean;
+}) => (
   <span className="inline-flex items-center gap-1 rounded-md bg-white/5 px-2 py-0.5 text-[11px] ring-1 ring-white/10">
     {code}
     {pct && (
-      <span className={`${up ? "text-emerald-400" : "text-red-400"} inline-flex items-center gap-0.5`}>
+      <span
+        className={`${up ? "text-emerald-400" : "text-red-400"} inline-flex items-center gap-0.5`}
+      >
         {up ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />} {pct}
       </span>
     )}
@@ -56,7 +72,9 @@ const NewsItem = ({ item }: { item: NewsRecord }) => (
     <div>
       <div className="line-clamp-1 text-sm text-white/90">{item.title}</div>
       <div className="mt-1 flex items-center gap-3 text-xs text-white/40">
-        <span className="inline-flex items-center gap-1"><Clock size={12} /> {item.date}</span>
+        <span className="inline-flex items-center gap-1">
+          <Clock size={12} /> {item.date}
+        </span>
         <span>{item.source}</span>
       </div>
     </div>
@@ -81,11 +99,19 @@ function Gauge() {
               <stop offset="100%" stopColor="#22c55e" />
             </linearGradient>
           </defs>
-          <path d="M10,50 A50,50 0 0,1 110,50" fill="none" stroke="url(#gg)" strokeWidth="10" strokeLinecap="round" />
+          <path
+            d="M10,50 A50,50 0 0,1 110,50"
+            fill="none"
+            stroke="url(#gg)"
+            strokeWidth="10"
+            strokeLinecap="round"
+          />
           <circle cx="60" cy="50" r="4" fill="#fde047" />
         </svg>
       </div>
-      <div className="text-center text-sm font-semibold text-yellow-300">Fear</div>
+      <div className="text-center text-sm font-semibold text-yellow-300">
+        Fear
+      </div>
     </div>
   );
 }

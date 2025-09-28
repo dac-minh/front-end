@@ -48,7 +48,10 @@ export default function Wallet() {
     <DashboardLayout>
       <div className="flex flex-col items-center gap-8 py-8">
         {/* Card preview block */}
-        <div className="relative rounded-[32px] bg-[#eaf4ff] p-10 shadow-[inset_0_0_40px_#dbeafe]" style={{ width: 620 }}>
+        <div
+          className="relative rounded-[32px] bg-[#eaf4ff] p-10 shadow-[inset_0_0_40px_#dbeafe]"
+          style={{ width: 620 }}
+        >
           <div className="absolute inset-0 -z-10 rounded-[32px] bg-white/5 ring-1 ring-white/10" />
           {/* Credit card */}
           <div className="mx-auto w-[420px] rounded-2xl bg-[#0b0b0b] p-6 text-white shadow-2xl ring-1 ring-white/10">
@@ -62,11 +65,15 @@ export default function Wallet() {
             <div className="mt-8 text-xl tracking-widest">{active.number}</div>
             <div className="mt-8 flex items-center justify-between text-sm text-white/70">
               <div>
-                <div className="text-[10px] uppercase tracking-widest text-white/40">Card Holder</div>
+                <div className="text-[10px] uppercase tracking-widest text-white/40">
+                  Card Holder
+                </div>
                 <div className="font-medium">{active.name}</div>
               </div>
               <div>
-                <div className="text-[10px] uppercase tracking-widest text-white/40">Valid Thru</div>
+                <div className="text-[10px] uppercase tracking-widest text-white/40">
+                  Valid Thru
+                </div>
                 <div className="font-medium">{active.expiry}</div>
               </div>
             </div>
@@ -75,13 +82,24 @@ export default function Wallet() {
 
         {/* Actions */}
         <div className="flex flex-wrap items-center gap-4">
-          <Button onClick={handleAdd} variant="outline" className="rounded-xl bg-background text-white ring-1 ring-white/10">
+          <Button
+            onClick={handleAdd}
+            variant="outline"
+            className="rounded-xl bg-background text-white ring-1 ring-white/10"
+          >
             <Plus className="mr-2" size={16} /> add thẻ mới
           </Button>
-          <Button onClick={handleDelete} variant="outline" className="rounded-xl bg-background text-white ring-1 ring-white/10">
+          <Button
+            onClick={handleDelete}
+            variant="outline"
+            className="rounded-xl bg-background text-white ring-1 ring-white/10"
+          >
             <Trash2 className="mr-2" size={16} /> Xóa thẻ
           </Button>
-          <Button onClick={handleEdit} className="rounded-xl bg-yellow-300 text-black hover:bg-yellow-200">
+          <Button
+            onClick={handleEdit}
+            className="rounded-xl bg-yellow-300 text-black hover:bg-yellow-200"
+          >
             <Edit3 className="mr-2" size={16} /> Thay đổi thông tin thẻ
           </Button>
         </div>

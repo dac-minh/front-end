@@ -60,7 +60,13 @@ export default function Index() {
           <div className="mb-8">
             <h2 className="text-4xl font-bold tracking-tight">Log in</h2>
           </div>
-          <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); navigate('/dashboard'); }}>
+          <form
+            className="space-y-5"
+            onSubmit={(e) => {
+              e.preventDefault();
+              navigate("/dashboard");
+            }}
+          >
             <div className="space-y-2">
               <Label htmlFor="email" className="text-sm">
                 Email address

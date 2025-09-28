@@ -1,8 +1,26 @@
 import { PropsWithChildren } from "react";
-import { Bell, LineChart, LogOut, Newspaper, PieChart, Settings, User, Wallet, Search } from "lucide-react";
+import {
+  Bell,
+  LineChart,
+  LogOut,
+  Newspaper,
+  PieChart,
+  Settings,
+  User,
+  Wallet,
+  Search,
+} from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
-const SidebarItem = ({ icon: Icon, label, to }: { icon: any; label: string; to?: string }) => {
+const SidebarItem = ({
+  icon: Icon,
+  label,
+  to,
+}: {
+  icon: any;
+  label: string;
+  to?: string;
+}) => {
   const location = useLocation();
   const active = to ? location.pathname.startsWith(to) : false;
   const Comp: any = to ? Link : (props: any) => <div {...props} />;
@@ -23,7 +41,9 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
       <div className="mx-auto grid max-w-[1400px] grid-cols-[240px_1fr] gap-6 px-6 py-6">
         {/* Sidebar */}
         <aside className="rounded-2xl bg-[#0f0f0f] p-4 ring-1 ring-white/10">
-          <div className="mb-6 px-2 text-lg font-semibold text-primary">Dashboard</div>
+          <div className="mb-6 px-2 text-lg font-semibold text-primary">
+            Dashboard
+          </div>
           <nav className="grid gap-1">
             <SidebarItem icon={PieChart} label="Dashboard" to="/dashboard" />
             <SidebarItem icon={User} label="Account" to="/account" />
@@ -34,7 +54,10 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           </nav>
           <div className="mt-8 rounded-xl bg-background/40 p-3 text-sm ring-1 ring-white/10">
             <div className="mb-2 text-muted-foreground">Quick actions</div>
-            <Link to="/" className="inline-flex items-center gap-2 text-primary hover:underline">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 text-primary hover:underline"
+            >
               <LogOut size={16} /> Log out
             </Link>
           </div>
@@ -45,7 +68,10 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           {/* Top bar */}
           <div className="flex items-center gap-3">
             <div className="relative flex-1">
-              <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
+              <Search
+                className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                size={18}
+              />
               <input
                 placeholder="Search"
                 className="h-10 w-full rounded-xl bg-[#0f0f0f] pl-10 pr-4 text-sm text-white outline-none ring-1 ring-white/10 placeholder:text-muted-foreground"
@@ -54,7 +80,9 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
             <button className="inline-flex size-10 items-center justify-center rounded-full bg-[#0f0f0f] ring-1 ring-white/10">
               <Bell size={18} />
             </button>
-            <div className="inline-flex size-10 items-center justify-center rounded-full bg-yellow-300 text-black font-semibold">A</div>
+            <div className="inline-flex size-10 items-center justify-center rounded-full bg-yellow-300 text-black font-semibold">
+              A
+            </div>
           </div>
 
           {children}
