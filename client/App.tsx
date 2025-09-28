@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import Account from "./pages/Account";
 import Settings from "./pages/Settings";
 import Wallet from "./pages/Wallet";
+import News from "./pages/News";
 
 const queryClient = new QueryClient();
 
