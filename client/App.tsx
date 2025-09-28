@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import Account from "./pages/Account";
 
 const queryClient = new QueryClient();
 
