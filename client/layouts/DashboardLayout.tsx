@@ -28,7 +28,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
             <SidebarItem icon={PieChart} label="Dashboard" to="/dashboard" />
             <SidebarItem icon={User} label="Account" to="/account" />
             <SidebarItem icon={LineChart} label="Chart" />
-            <SidebarItem icon={Wallet} label="Wallet" />
+            <SidebarItem icon={Wallet} label="Wallet" to="/wallet" />
             <SidebarItem icon={Newspaper} label="News" />
             <SidebarItem icon={Settings} label="Settings" to="/settings" />
           </nav>
