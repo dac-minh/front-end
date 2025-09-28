@@ -1,5 +1,6 @@
 import DashboardLayout from "@/layouts/DashboardLayout";
 import { ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const AssetPill = ({ name, code, pct, color }: { name: string; code: string; pct: number; color: string }) => (
   <div className="flex items-center justify-between rounded-xl bg-background/40 px-3 py-2 ring-1 ring-white/10">
@@ -24,14 +25,14 @@ export default function Dashboard() {
           <div className="mt-1 text-4xl sm:text-5xl font-extrabold tracking-tight">$154,510<span className="text-white/40 text-2xl align-top">.00</span></div>
           <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
             {[
-              { name: "Bitcoin", value: "$52,291", change: "+0.25%", color: "#f2b705" },
-              { name: "Litecoin", value: "$8,291", change: "+0.25%", color: "#b0e3ff" },
-              { name: "Ethereum", value: "$28,291", change: "+0.25%", color: "#7cc7ff" },
-              { name: "Solana", value: "$14,291", change: "+0.15%", color: "#16a34a" },
-              { name: "BNB", value: "$9,022", change: "-0.10%", color: "#facc15" },
-              { name: "Cardano", value: "$3,991", change: "+0.05%", color: "#60a5fa" },
+              { name: "Bitcoin", code: "BTC", value: "$52,291", change: "+0.25%", color: "#f2b705" },
+              { name: "Litecoin", code: "LTC", value: "$8,291", change: "+0.25%", color: "#b0e3ff" },
+              { name: "Ethereum", code: "ETH", value: "$28,291", change: "+0.25%", color: "#7cc7ff" },
+              { name: "Solana", code: "SOL", value: "$14,291", change: "+0.15%", color: "#16a34a" },
+              { name: "BNB", code: "BNB", value: "$9,022", change: "-0.10%", color: "#facc15" },
+              { name: "Cardano", code: "ADA", value: "$3,991", change: "+0.05%", color: "#60a5fa" },
             ].map((a, idx) => (
-              <div key={idx} className="rounded-xl bg-[#0f0f0f] p-4 ring-1 ring-white/10">
+              <Link key={idx} to={`/chart/${a.code}`} className="rounded-xl bg-[#0f0f0f] p-4 ring-1 ring-white/10 transition hover:bg-white/5">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="inline-flex size-6 rounded-full" style={{ backgroundColor: a.color }} />
@@ -41,7 +42,7 @@ export default function Dashboard() {
                 </div>
                 <div className="mt-3 text-white/90">{a.value}</div>
                 <div className="text-xs text-green-400">{a.change}</div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

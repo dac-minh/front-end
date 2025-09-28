@@ -27,7 +27,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           <nav className="grid gap-1">
             <SidebarItem icon={PieChart} label="Dashboard" to="/dashboard" />
             <SidebarItem icon={User} label="Account" to="/account" />
-            <SidebarItem icon={LineChart} label="Chart" />
+            <SidebarItem icon={LineChart} label="Chart" to="/chart" />
             <SidebarItem icon={Wallet} label="Wallet" to="/wallet" />
             <SidebarItem icon={Newspaper} label="News" to="/news" />
             <SidebarItem icon={Settings} label="Settings" to="/settings" />
