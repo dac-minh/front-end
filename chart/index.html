@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chart Overview</title>
+  <link href="../styles.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+</head>
+<body class="bg">
+  <main class="shell">
+    <aside class="aside">
+      <div class="logo">Dashboard</div>
+      <nav class="nav">
+        <a href="../dashboard/index.html">Dashboard</a>
+        <a href="../account/index.html">Account</a>
+        <a class="active" href="../chart/index.html">Chart</a>
+        <a href="../wallet/index.html">Wallet</a>
+        <a href="../news/index.html">News</a>
+        <a href="../settings/index.html">Settings</a>
+      </nav>
+    </aside>
+
+    <section class="grid" style="gap:24px">
+      <div class="grid" style="gap:24px;grid-template-columns:2fr 1fr">
+        <div class="panel-dark">
+          <div class="grid" style="grid-template-columns:repeat(12,minmax(0,1fr));gap:12px">
+            <a class="card" style="grid-column:span 6" href="./BTC/index.html"><b>Bitcoin (BTC)</b><div class="muted">$37,205</div><div style="color:#22c55e">+1.48%</div></a>
+            <a class="card" style="grid-column:span 4" href="./ETH/index.html"><b>Ethereum (ETH)</b><div class="muted">$2,025</div><div style="color:#22c55e">+3.24%</div></a>
+            <div class="card" style="grid-column:span 2"><b>USDT</b><div class="muted">$1.00</div><div style="color:#22c55e">+0.03%</div></div>
+          </div>
+        </div>
+        <div class="panel-dark">
+          <div class="muted" style="margin-bottom:8px">Top 5 uptrend</div>
+          <div class="grid">
+            <div class="card" style="display:flex;justify-content:space-between"><span>Bitcoin</span><b>37%</b></div>
+            <div class="card" style="display:flex;justify-content:space-between"><span>Tether</span><b>23%</b></div>
+            <div class="card" style="display:flex;justify-content:space-between"><span>Ethereum</span><b>20%</b></div>
+            <div class="card" style="display:flex;justify-content:space-between"><span>Ripple</span><b>17%</b></div>
+            <div class="card" style="display:flex;justify-content:space-between"><span>Solana</span><b>16%</b></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-dark">
+        <div class="muted" style="border-bottom:1px solid var(--ring);padding-bottom:8px;margin-bottom:8px">Market rank</div>
+        <div style="overflow:auto">
+          <table class="table">
+            <thead><tr><th>Asset</th><th>Price</th><th>Change</th><th>Mkt cap</th><th>Volume</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>Bitcoin (BTC)</td><td>$63,205</td><td style="color:#22c55e">+1.10%</td><td>$1.24T</td><td>$38.0B</td><td><a class="btn primary" href="./BTC/index.html">View</a></td></tr>
+              <tr><td>Ethereum (ETH)</td><td>$3,025</td><td style="color:#22c55e">+0.48%</td><td>$620B</td><td>$22.0B</td><td><a class="btn primary" href="./ETH/index.html">View</a></td></tr>
+              <tr><td>Solana (SOL)</td><td>$145</td><td style="color:#22c55e">+0.85%</td><td>$70B</td><td>$3.4B</td><td><a class="btn primary" href="./SOL/index.html">View</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
