@@ -26,27 +26,43 @@
     </aside>
 
     <section class="grid" style="place-items:center">
-      <div class="panel-dark" style="max-width:720px;width:100%">
-        <h2 style="margin:0 0 12px">Cài đặt tài khoản</h2>
-        <div class="grid cols-2">
+      <div class="settings-card">
+        <div class="settings-header">
+          <h2>Account Settings</h2>
+          <span class="settings-icon">👤</span>
+        </div>
+
+        <div class="settings-section">
+          <div class="section-title">Personal Information</div>
           <div class="grid">
-            <label class="label">Tên người dùng</label>
-            <input class="input" placeholder="username" />
+            <label class="label">Username</label>
+            <input class="input input-gold" placeholder="username" />
             <label class="label">Email</label>
-            <input class="input" type="email" placeholder="email@domain.com" />
-            <label class="label">Số điện thoại</label>
-            <input class="input" placeholder="0901234567" />
-            <div style="display:flex;gap:8px;margin-top:8px"><a class="btn primary" href="#">Lưu thay đổi</a><a class="btn outline" href="#">Hủy</a></div>
+            <input class="input input-gold" type="email" placeholder="email@domain.com" />
+            <label class="label">Phone</label>
+            <div style="display:flex;gap:8px">
+              <input class="input input-gold" placeholder="0901234567" style="flex:1" />
+              <button class="btn outline" style="height:44px;min-width:44px">📅</button>
+            </div>
+            <div class="actions">
+              <button class="btn primary">Save Changes</button>
+              <button class="btn outline">Cancel</button>
+            </div>
           </div>
+        </div>
+
+        <div class="settings-section">
+          <div class="section-title">Change Password</div>
           <div class="grid">
-            <h3 style="margin:0 0 8px">Đổi mật khẩu</h3>
-            <label class="label">Mật khẩu hiện tại</label>
-            <input class="input" type="password" />
-            <label class="label">Mật khẩu mới</label>
-            <input class="input" type="password" />
-            <label class="label">Xác nhận mật khẩu mới</label>
-            <input class="input" type="password" />
-            <a class="btn primary" href="#" style="margin-top:8px">Cập nhật mật khẩu</a>
+            <label class="label">Current Password</label>
+            <input class="input input-gold" type="password" />
+            <label class="label">New Password</label>
+            <input class="input input-gold" type="password" />
+            <label class="label">Confirm New Password</label>
+            <input class="input input-gold" type="password" />
+            <div class="actions">
+              <button class="btn primary">Update Password</button>
+            </div>
           </div>
         </div>
       </div>
