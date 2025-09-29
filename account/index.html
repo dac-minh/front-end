@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Account</title>
+  <link href="../styles.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+</head>
+<body class="bg">
+  <main class="shell">
+    <aside class="aside">
+      <div class="logo">Dashboard</div>
+      <nav class="nav">
+        <a href="../dashboard/index.html">Dashboard</a>
+        <a class="active" href="../account/index.html">Account</a>
+        <a href="../chart/index.html">Chart</a>
+        <a href="../wallet/index.html">Wallet</a>
+        <a href="../news/index.html">News</a>
+        <a href="../settings/index.html">Settings</a>
+      </nav>
+    </aside>
+
+    <section class="grid" style="place-items:center">
+      <div class="panel-dark" style="max-width:520px;width:100%">
+        <h2 style="margin:0 0 8px">THÔNG TIN CÁ NHÂN</h2>
+        <div class="grid">
+          <label class="label">Họ và tên</label>
+          <input class="input" placeholder="Nguyễn Văn A" />
+          <label class="label">Số điện thoại</label>
+          <input class="input" placeholder="0901234567" />
+          <label class="label">Email</label>
+          <input class="input" type="email" placeholder="email@domain.com" />
+          <label class="label">Ngày sinh</label>
+          <input class="input" type="date" />
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <a class="btn primary" href="#">Lưu thay đổi</a>
+            <a class="btn outline" href="#">Hủy</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
