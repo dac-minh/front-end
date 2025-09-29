@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>News</title>
+  <link href="../styles.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+</head>
+<body class="bg">
+  <main class="shell">
+    <aside class="aside">
+      <div class="logo">Dashboard</div>
+      <nav class="nav">
+        <a href="../dashboard/index.html">Dashboard</a>
+        <a href="../account/index.html">Account</a>
+        <a href="../chart/index.html">Chart</a>
+        <a href="../wallet/index.html">Wallet</a>
+        <a class="active" href="../news/index.html">News</a>
+        <a href="../settings/index.html">Settings</a>
+      </nav>
+    </aside>
+
+    <section class="grid" style="gap:24px;grid-template-columns:1fr 2fr">
+      <div class="panel-dark" style="height:max-content">
+        <div class="muted">Sentiment</div>
+        <div style="display:flex;justify-content:center;margin-top:8px">
+          <svg viewBox="0 0 120 60" width="160">
+            <defs>
+              <linearGradient id="gg" x1="0" x2="1">
+                <stop offset="0%" stop-color="#ef4444"/>
+                <stop offset="50%" stop-color="#fde047"/>
+                <stop offset="100%" stop-color="#22c55e"/>
+              </linearGradient>
+            </defs>
+            <path d="M10,50 A50,50 0 0,1 110,50" fill="none" stroke="url(#gg)" stroke-width="10" stroke-linecap="round" />
+            <circle cx="60" cy="50" r="4" fill="#fde047"></circle>
+          </svg>
+        </div>
+        <div style="text-align:center;color:#fde047;font-weight:700">Fear</div>
+      </div>
+
+      <div class="panel-dark">
+        <div class="muted" style="border-bottom:1px solid var(--ring);padding-bottom:8px;margin-bottom:8px">Crypto News</div>
+        <ul style="list-style:none;padding:0;margin:0">
+          <li class="card" style="display:grid;grid-template-columns:1fr auto;gap:12px">
+            <div>
+              <div>Solana, FLOKI holders eye Rebel Satoshi amid bullish prediction</div>
+              <div class="muted" style="font-size:12px;margin-top:4px">Aug 7, 2024 • CryptoNews</div>
+            </div>
+            <div class="badge">SOL <span style="color:#22c55e">+0.8%</span></div>
+          </li>
+          <li class="card" style="display:grid;grid-template-columns:1fr auto;gap:12px">
+            <div>
+              <div>LINK Poised for 250% Rally: Technicals and Key Levels to Watch</div>
+              <div class="muted" style="font-size:12px;margin-top:4px">Aug 6, 2024 • TheBlock</div>
+            </div>
+            <div class="badge">LINK <span style="color:#22c55e">+0.6%</span></div>
+          </li>
+          <li class="card" style="display:grid;grid-template-columns:1fr auto;gap:12px">
+            <div>
+              <div>Bitcoin whales accumulate as ETF inflows surge</div>
+              <div class="muted" style="font-size:12px;margin-top:4px">Aug 6, 2024 • Glassnode</div>
+            </div>
+            <div class="badge">BTC <span style="color:#22c55e">+0.2%</span></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
