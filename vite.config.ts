@@ -9,7 +9,8 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
     fs: {
-      allow: ["./client", "./shared"],
+      // Allow serving static HTML/CSS from project root and app folders
+      allow: ["./", "./client", "./shared", "./dashboard", "./wallet", "./news", "./chart", "./account", "./settings"],
       deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**", "server/**"],
     },
   },
