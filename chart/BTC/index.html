@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bitcoin (BTC)</title>
+  <link href="../../styles.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+</head>
+<body class="bg">
+  <main class="shell">
+    <aside class="aside">
+      <div class="logo">Dashboard</div>
+      <nav class="nav">
+        <a href="../../dashboard/index.html">Dashboard</a>
+        <a href="../../account/index.html">Account</a>
+        <a class="active" href="../../chart/index.html">Chart</a>
+        <a href="../../wallet/index.html">Wallet</a>
+        <a href="../../news/index.html">News</a>
+        <a href="../../settings/index.html">Settings</a>
+      </nav>
+    </aside>
+
+    <section class="grid" style="gap:24px">
+      <div class="panel-dark">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h1 style="margin:0;font-size:24px">Bitcoin <span class="muted">(BTC)</span></h1>
+          <div style="font-weight:800;color:#fde047;font-size:28px">$52,241</div>
+        </div>
+        <div class="muted" style="margin-top:8px">Chart</div>
+        <div class="spark" style="height:260px;margin-top:8px"></div>
+      </div>
+
+      <div class="grid" style="gap:24px;grid-template-columns:1fr 1fr 1fr">
+        <div class="card"><div class="muted">Market cap</div><b>$2.33T</b><div style="color:#ef4444;font-size:12px">-0.23%</div></div>
+        <div class="card"><div class="muted">FDV</div><b>$2.45T</b></div>
+        <div class="card"><div class="muted">Volume (24h)</div><b>$41.81B</b><div style="color:#ef4444;font-size:12px">-36.5%</div></div>
+        <div class="card"><div class="muted">Vol/Mkt Cap (24h)</div><b>1.83%</b></div>
+        <div class="card"><div class="muted">Max supply</div><b>21M BTC</b></div>
+        <div class="card"><div class="muted">Circulating supply</div><b>19.92M BTC</b></div>
+      </div>
+
+      <div class="panel-dark">
+        <div class="muted" style="border-bottom:1px solid var(--ring);padding-bottom:8px;margin-bottom:8px">News</div>
+        <ul style="list-style:none;margin:0;padding:0" class="grid">
+          <li class="card">Bitcoin RGB Developer Blight Labs Secures Major $0.6M Funding for Breakthrough Infrastructure</li>
+          <li class="card">Bitcoin price $150K target comes as analyst sees weak to all‑time highs</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
