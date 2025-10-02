@@ -32,14 +32,14 @@ function SidebarItem({
     <Comp
       to={to as any}
       title={collapsed ? label : undefined}
-      className={`group flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition-colors ${
+      className={`group flex items-center gap-2 rounded-xl px-3 py-2 text-sm transition-colors ${
         active
           ? "bg-white/10 text-white"
           : "text-muted-foreground hover:bg-white/5"
       }`}
     >
       <span
-        className={`inline-flex size-8 items-center justify-center rounded-lg ${
+        className={`inline-flex size-7 items-center justify-center rounded-lg ${
           active ? "bg-yellow-300 text-black" : "bg-white/5 text-white/70"
         }`}
       >
@@ -61,7 +61,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
     localStorage.setItem("sidebar:collapsed", collapsed ? "1" : "0");
   }, [collapsed]);
 
-  const sidebarWidth = collapsed ? 80 : 240;
+  const sidebarWidth = collapsed ? 64 : 208;
 
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#0a0a0a,rgba(10,10,10,0.95))] text-white">
@@ -81,13 +81,13 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
             {!collapsed ? (
               <div className="px-1 text-lg font-semibold text-primary">Dashboard</div>
             ) : (
-              <div className="inline-flex size-8 items-center justify-center rounded-lg bg-yellow-300 text-black font-bold">D</div>
+              <div className="inline-flex size-7 items-center justify-center rounded-lg bg-yellow-300 text-black font-bold">D</div>
             )}
             <button
               onClick={() => setCollapsed((v) => !v)}
               aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
               aria-expanded={!collapsed}
-              className="inline-flex size-8 items-center justify-center rounded-lg bg-white/5 text-white/70 hover:bg-white/10"
+              className="inline-flex size-7 items-center justify-center rounded-lg bg-white/5 text-white/70 hover:bg-white/10"
             >
               {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
             </button>
@@ -102,13 +102,13 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
             <SidebarItem icon={Settings} label="Settings" to="/settings" collapsed={collapsed} />
           </nav>
 
-          <div className="absolute bottom-3 left-3 right-3 border-t border-white/5 pt-3">
+          <div className="absolute bottom-2 left-2 right-2 border-t border-white/5 pt-2">
             <Link
               to="/"
               className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-muted-foreground hover:bg-white/5"
               title={collapsed ? "Log out" : undefined}
             >
-              <span className="inline-flex size-8 items-center justify-center rounded-lg bg-white/5 text-white/70">
+              <span className="inline-flex size-7 items-center justify-center rounded-lg bg-white/5 text-white/70">
                 <LogOut size={18} />
               </span>
               {!collapsed && <span>Log out</span>}
