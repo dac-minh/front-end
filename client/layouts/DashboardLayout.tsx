@@ -74,7 +74,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
       >
         {/* Sidebar */}
         <aside
-          className="sticky top-6 relative flex h-[calc(100vh-48px)] flex-col overflow-hidden rounded-2xl bg-[#0f0f0f] p-3 pb-14 ring-1 ring-white/10"
+          className="sticky top-6 relative flex h-[calc(100vh-48px)] flex-col overflow-hidden rounded-2xl bg-[#0f0f0f] p-3 ring-1 ring-white/10"
           style={{ width: sidebarWidth }}
         >
           <div className="mb-2 flex items-center justify-between px-1">
@@ -93,7 +93,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
             </button>
           </div>
 
-          <nav className="mt-2 grid flex-1 min-h-0 gap-1 overflow-auto pb-16">
+          <nav className="mt-2 grid flex-1 min-h-0 gap-1 overflow-auto pb-2">
             <SidebarItem icon={PieChart} label="Dashboard" to="/dashboard" collapsed={collapsed} />
             <SidebarItem icon={User} label="Account" to="/account" collapsed={collapsed} />
             <SidebarItem icon={LineChart} label="Chart" to="/chart" collapsed={collapsed} />
@@ -102,16 +102,10 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
             <SidebarItem icon={Settings} label="Settings" to="/settings" collapsed={collapsed} />
           </nav>
 
-          <div className="absolute bottom-2 left-2 right-2 border-t border-white/5 pt-2">
-            <Link
-              to="/"
-              className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm text-muted-foreground hover:bg-white/5"
-              title={collapsed ? "Log out" : undefined}
-            >
-              <span className="inline-flex size-6 items-center justify-center rounded-lg bg-white/5 text-white/70">
-                <LogOut size={18} />
-              </span>
-              {!collapsed && <span>Log out</span>}
+          <div className="mt-3 rounded-xl bg-background/40 p-3 text-sm ring-1 ring-white/10">
+            <div className="mb-2 text-muted-foreground">Quick actions</div>
+            <Link to="/" className="inline-flex items-center gap-2 text-primary hover:underline" title={collapsed ? "Log out" : undefined}>
+              <LogOut size={16} /> Log out
             </Link>
           </div>
         </aside>
