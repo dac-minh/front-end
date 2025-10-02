@@ -8,11 +8,6 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-    fs: {
-      // Allow serving static HTML/CSS from project root and app folders
-      allow: ["./", "./client", "./shared", "./dashboard", "./wallet", "./news", "./chart", "./account", "./settings"],
-      deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**", "server/**"],
-    },
   },
   build: {
     outDir: "dist/spa",
