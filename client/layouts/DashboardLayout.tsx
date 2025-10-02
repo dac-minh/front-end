@@ -93,7 +93,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
             </button>
           </div>
 
-          <nav className="mt-2 grid gap-1">
+          <nav className="mt-2 grid flex-1 min-h-0 gap-1 overflow-auto pb-16">
             <SidebarItem icon={PieChart} label="Dashboard" to="/dashboard" collapsed={collapsed} />
             <SidebarItem icon={User} label="Account" to="/account" collapsed={collapsed} />
             <SidebarItem icon={LineChart} label="Chart" to="/chart" collapsed={collapsed} />
