@@ -51,7 +51,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
     localStorage.setItem("sidebar:collapsed", collapsed ? "1" : "0");
   }, [collapsed]);
 
-  const sidebarWidth = collapsed ? 72 : 240;
+  const sidebarWidth = collapsed ? 0 : 240;
 
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#0a0a0a,rgba(10,10,10,0.95))] text-white">
@@ -60,7 +60,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
         style={{ gridTemplateColumns: `${sidebarWidth}px 1fr` }}
       >
         {/* Sidebar */}
-        <aside className="rounded-2xl bg-[#0f0f0f] p-3 ring-1 ring-white/10" style={{ width: sidebarWidth }}>
+        <aside className={`rounded-2xl bg-[#0f0f0f] p-3 ring-1 ring-white/10 transition-all ${collapsed ? "opacity-0 pointer-events-none" : ""}`} style={{ width: sidebarWidth }}>
           <div className="mb-4 flex items-center justify-between px-1">
             {!collapsed ? (
               <div className="px-1 text-lg font-semibold text-primary">Dashboard</div>
@@ -116,6 +116,15 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           {children}
         </section>
       </div>
+      {collapsed && (
+        <button
+          onClick={() => setCollapsed(false)}
+          aria-label="Open sidebar"
+          className="fixed left-4 top-6 z-50 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-yellow-300 text-black font-bold shadow ring-1 ring-black/10"
+        >
+          D
+        </button>
+      )}
     </main>
   );
 }
