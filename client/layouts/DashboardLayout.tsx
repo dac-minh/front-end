@@ -32,7 +32,7 @@ function SidebarItem({
     <Comp
       to={to as any}
       title={collapsed ? label : undefined}
-      className={`group flex items-center gap-2 rounded-xl px-2.5 py-2 text-sm transition-colors ${
+      className={`group flex items-center gap-2 rounded-xl px-2 py-1.5 text-xs transition-colors ${
         active
           ? "bg-white/10 text-white ring-1 ring-white/10"
           : "text-muted-foreground hover:bg-white/5 ring-1 ring-transparent hover:ring-white/10"
@@ -43,7 +43,7 @@ function SidebarItem({
           active ? "text-white" : "text-white/70"
         }`}
       >
-        <Icon size={18} />
+        <Icon size={16} />
       </span>
       {!collapsed && <span className="truncate">{label}</span>}
     </Comp>
@@ -61,7 +61,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
     localStorage.setItem("sidebar:collapsed", collapsed ? "1" : "0");
   }, [collapsed]);
 
-  const sidebarWidth = collapsed ? 56 : 176;
+  const sidebarWidth = collapsed ? 56 : 160;
 
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#0a0a0a,rgba(10,10,10,0.95))] text-white">
@@ -74,12 +74,12 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
       >
         {/* Sidebar */}
         <aside
-          className="sticky top-6 relative flex h-[calc(100vh-48px)] flex-col overflow-hidden rounded-2xl bg-[#0f0f0f] p-3 ring-1 ring-white/10"
+          className="sticky top-6 relative flex h-[calc(100vh-48px)] flex-col overflow-hidden rounded-2xl bg-[#0f0f0f] p-2 ring-1 ring-white/10"
           style={{ width: sidebarWidth }}
         >
           <div className="mb-2 flex items-center justify-between px-1">
             {!collapsed ? (
-              <div className="px-1 text-lg font-semibold text-primary">Dashboard</div>
+              <div className="px-1 text-base font-semibold text-primary">Dashboard</div>
             ) : (
               <div className="inline-flex size-6 items-center justify-center rounded-lg bg-yellow-300 text-black font-bold">D</div>
             )}
