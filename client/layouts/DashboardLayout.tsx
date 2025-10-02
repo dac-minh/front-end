@@ -102,7 +102,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
             <SidebarItem icon={Settings} label="Settings" to="/settings" collapsed={collapsed} />
           </nav>
 
-          <div className="mt-auto border-t border-white/5 pt-3">
+          <div className="absolute bottom-3 left-3 right-3 border-t border-white/5 pt-3">
             <Link
               to="/"
               className="flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-muted-foreground hover:bg-white/5"
