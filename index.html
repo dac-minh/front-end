@@ -3,53 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Logistica — Đăng nhập</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css" />
+    <title>Logistica</title>
   </head>
-  <body class="bg">
-    <main class="split">
-      <section class="split-left">
-        <div class="badge">Logistica</div>
-        <h1 class="title">Designed for full logistic support</h1>
-        <p class="subtitle">View all the analytics and grow your business from anywhere.</p>
-        <div class="cards">
-          <div class="card dark">
-            <div class="card-head">
-              <span class="muted">Website traffic</span>
-              <span class="chip">12k</span>
-            </div>
-            <div class="spark spark-1"></div>
-          </div>
-          <div class="card dark">
-            <div class="muted">Conversion</div>
-            <div class="bars">
-              <i style="height:45px"></i><i style="height:60px"></i><i style="height:38px"></i><i style="height:72px"></i><i style="height:68px"></i>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="split-right">
-        <div class="panel">
-          <h2 class="panel-title">Log in</h2>
-          <form class="form" onsubmit="event.preventDefault(); location.href='dashboard/index.html'">
-            <label class="label" for="email">Email address</label>
-            <div class="input-wrap">
-              <input id="email" type="email" placeholder="johndoe@gmail.com" class="input" required />
-            </div>
-            <label class="label" for="password">Password</label>
-            <div class="input-wrap">
-              <input id="password" type="password" placeholder="••••••••" class="input" required />
-            </div>
-            <button class="btn primary full">Sign in</button>
-          </form>
-          <p class="small center muted mt">Don’t have an account? <a class="link" href="signup/index.html">Sign up</a></p>
-          <div class="divider"><span>OR</span></div>
-          <a class="btn outline full" href="#">Log in with Google</a>
-        </div>
-      </section>
-    </main>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/client/App.tsx"></script>
   </body>
 </html>
