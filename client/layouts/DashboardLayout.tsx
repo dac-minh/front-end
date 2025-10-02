@@ -74,7 +74,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
       >
         {/* Sidebar */}
         <aside
-          className="relative flex h-full flex-col rounded-2xl bg-[#0f0f0f] p-3 pb-14 ring-1 ring-white/10"
+          className="sticky top-6 relative flex h-[calc(100vh-48px)] flex-col overflow-hidden rounded-2xl bg-[#0f0f0f] p-3 pb-14 ring-1 ring-white/10"
           style={{ width: sidebarWidth }}
         >
           <div className="mb-2 flex items-center justify-between px-1">
