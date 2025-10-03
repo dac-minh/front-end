@@ -133,6 +133,16 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
         <section className="space-y-6">
           {/* Top bar */}
           <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
+              <span className="rounded-lg bg-[#0f0f0f] px-3 py-2 text-sm font-semibold text-primary ring-1 ring-white/10">Dashboard</span>
+              <button
+                onClick={() => setCollapsed((v) => !v)}
+                aria-label={collapsed ? "Open sidebar" : "Hide sidebar"}
+                className="inline-flex size-8 items-center justify-center rounded-lg bg-[#0f0f0f] ring-1 ring-white/10"
+              >
+                {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+              </button>
+            </div>
             <div className="relative flex-1">
               <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
               <input
