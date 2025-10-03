@@ -1,4 +1,4 @@
-import { PropsWithChildren, useEffect, useState } from "react";
+import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import {
   Bell,
   LineChart,
@@ -41,15 +41,44 @@ const SidebarItem = ({
 };
 
 export default function DashboardLayout({ children }: PropsWithChildren) {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   useEffect(() => {
     const saved = localStorage.getItem("sidebar:collapsed");
-    setCollapsed(saved === "1");
+    if (saved === null) setCollapsed(true);
+    else setCollapsed(saved === "1");
   }, []);
   useEffect(() => {
     localStorage.setItem("sidebar:collapsed", collapsed ? "1" : "0");
   }, [collapsed]);
+
+  const asideRef = useRef<HTMLDivElement | null>(null);
+  const hideTimer = useRef<number | null>(null);
+  const openSidebar = () => {
+    if (hideTimer.current) {
+      clearTimeout(hideTimer.current);
+      hideTimer.current = null;
+    }
+    setCollapsed(false);
+  };
+  const scheduleHide = () => {
+    if (hideTimer.current) clearTimeout(hideTimer.current);
+    hideTimer.current = window.setTimeout(() => setCollapsed(true), 180);
+  };
+  useEffect(() => {
+    const handleDown = (e: MouseEvent) => {
+      if (!asideRef.current) return;
+      if (asideRef.current.contains(e.target as Node)) return;
+      setCollapsed(true);
+    };
+    const onScroll = () => setCollapsed(true);
+    document.addEventListener("mousedown", handleDown);
+    window.addEventListener("scroll", onScroll, { passive: true } as any);
+    return () => {
+      document.removeEventListener("mousedown", handleDown);
+      window.removeEventListener("scroll", onScroll as any);
+    };
+  }, []);
 
   const sidebarWidth = collapsed ? 0 : 240;
 
@@ -60,7 +89,13 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
         style={{ gridTemplateColumns: `${sidebarWidth}px 1fr` }}
       >
         {/* Sidebar */}
-        <aside className={`rounded-2xl bg-[#0f0f0f] p-3 ring-1 ring-white/10 transition-all ${collapsed ? "opacity-0 pointer-events-none" : ""}`} style={{ width: sidebarWidth }}>
+        <aside
+          ref={asideRef}
+          onMouseEnter={openSidebar}
+          onMouseLeave={scheduleHide}
+          className={`rounded-2xl bg-[#0f0f0f] p-3 ring-1 ring-white/10 transition-[width,opacity] duration-200 ${collapsed ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+          style={{ width: sidebarWidth }}
+        >
           <div className="mb-4 flex items-center justify-between px-1">
             {!collapsed ? (
               <div className="px-1 text-lg font-semibold text-primary">Dashboard</div>
@@ -116,6 +151,21 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           {children}
         </section>
       </div>
+      {collapsed && (
+        <button
+          onClick={() => setCollapsed(false)}
+          aria-label="Open sidebar"
+          className="fixed left-4 top-6 z-50 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-yellow-300 text-black font-bold shadow ring-1 ring-black/10"
+        >
+          D
+        </button>
+      )}
+      {/* Hover edge reveal zone */}
+      <div
+        onMouseEnter={openSidebar}
+        className="fixed left-0 top-0 z-40 h-screen w-2 md:w-3 bg-transparent"
+        aria-hidden
+      />
       {collapsed && (
         <button
           onClick={() => setCollapsed(false)}
