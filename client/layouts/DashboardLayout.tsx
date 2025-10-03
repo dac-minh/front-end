@@ -99,9 +99,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           <div className="mb-4 flex items-center justify-between px-1">
             {!collapsed ? (
               <div className="px-1 text-lg font-semibold text-primary">Dashboard</div>
-            ) : (
-              <div className="inline-flex size-8 items-center justify-center rounded-lg bg-yellow-300 text-black font-bold">D</div>
-            )}
+            ) : null}
             <button
               onClick={() => setCollapsed((v) => !v)}
               aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
