@@ -161,15 +161,6 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           {children}
         </section>
       </div>
-      {collapsed && (
-        <button
-          onClick={() => setCollapsed(false)}
-          aria-label="Open sidebar"
-          className="fixed left-4 top-6 z-50 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-yellow-300 text-black font-bold shadow ring-1 ring-black/10"
-        >
-          D
-        </button>
-      )}
       {/* Hover edge reveal zone */}
       <div
         onMouseEnter={openSidebar}
