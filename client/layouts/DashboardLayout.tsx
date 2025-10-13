@@ -19,11 +19,13 @@ const SidebarItem = ({
   label,
   to,
   collapsed,
+  onClick,
 }: {
   icon: any;
   label: string;
   to?: string;
   collapsed: boolean;
+  onClick?: () => void;
 }) => {
   const location = useLocation();
   const active = to ? location.pathname.startsWith(to) : false;
@@ -32,6 +34,7 @@ const SidebarItem = ({
     <Comp
       to={to as any}
       title={collapsed ? label : undefined}
+      onClick={onClick}
       className={`flex items-center gap-3 rounded-xl px-3 py-2 text-sm ${active ? "bg-white/10 text-white" : "text-muted-foreground hover:bg-white/5"}`}
     >
       <Icon size={18} />
@@ -42,18 +45,28 @@ const SidebarItem = ({
 
 export default function DashboardLayout({ children }: PropsWithChildren) {
   const [collapsed, setCollapsed] = useState(true);
+  const [pinned, setPinned] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem("sidebar:collapsed");
+    const savedPinned = localStorage.getItem("sidebar:pinned");
     if (saved === null) setCollapsed(true);
     else setCollapsed(saved === "1");
+    if (savedPinned !== null) setPinned(savedPinned === "1");
   }, []);
   useEffect(() => {
     localStorage.setItem("sidebar:collapsed", collapsed ? "1" : "0");
   }, [collapsed]);
+  useEffect(() => {
+    localStorage.setItem("sidebar:pinned", pinned ? "1" : "0");
+  }, [pinned]);
 
   const asideRef = useRef<HTMLDivElement | null>(null);
   const hideTimer = useRef<number | null>(null);
+  const pinnedRef = useRef(false);
+  useEffect(() => {
+    pinnedRef.current = pinned;
+  }, [pinned]);
   const openSidebar = () => {
     if (hideTimer.current) {
       clearTimeout(hideTimer.current);
@@ -62,6 +75,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
     setCollapsed(false);
   };
   const scheduleHide = () => {
+    if (pinnedRef.current) return; // do not auto-hide when pinned
     if (hideTimer.current) clearTimeout(hideTimer.current);
     hideTimer.current = window.setTimeout(() => setCollapsed(true), 180);
   };
@@ -69,9 +83,13 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
     const handleDown = (e: MouseEvent) => {
       if (!asideRef.current) return;
       if (asideRef.current.contains(e.target as Node)) return;
+      if (pinnedRef.current) return;
       setCollapsed(true);
     };
-    const onScroll = () => setCollapsed(true);
+    const onScroll = () => {
+      if (pinnedRef.current) return;
+      setCollapsed(true);
+    };
     document.addEventListener("mousedown", handleDown);
     window.addEventListener("scroll", onScroll, { passive: true } as any);
     return () => {
@@ -101,7 +119,14 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
               <div className="px-1 text-lg font-semibold text-primary">Dashboard</div>
             ) : null}
             <button
-              onClick={() => setCollapsed((v) => !v)}
+              onClick={() =>
+                setCollapsed((v) => {
+                  const next = !v;
+                  if (next) setPinned(true); // opening -> pin
+                  else setPinned(false); // closing -> unpin
+                  return next;
+                })
+              }
               aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
               aria-expanded={!collapsed}
               className="inline-flex size-8 items-center justify-center rounded-lg bg-white/5 text-white/70 hover:bg-white/10"
@@ -111,12 +136,12 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           </div>
 
           <nav className="grid gap-1">
-            <SidebarItem icon={PieChart} label="Dashboard" to="/dashboard" collapsed={collapsed} />
-            <SidebarItem icon={User} label="Account" to="/account" collapsed={collapsed} />
-            <SidebarItem icon={LineChart} label="Chart" to="/chart" collapsed={collapsed} />
-            <SidebarItem icon={Wallet} label="Wallet" to="/wallet" collapsed={collapsed} />
-            <SidebarItem icon={Newspaper} label="News" to="/news" collapsed={collapsed} />
-            <SidebarItem icon={Settings} label="Settings" to="/settings" collapsed={collapsed} />
+            <SidebarItem icon={PieChart} label="Dashboard" to="/dashboard" collapsed={collapsed} onClick={() => setPinned(true)} />
+            <SidebarItem icon={User} label="Account" to="/account" collapsed={collapsed} onClick={() => setPinned(true)} />
+            <SidebarItem icon={LineChart} label="Chart" to="/chart" collapsed={collapsed} onClick={() => setPinned(true)} />
+            <SidebarItem icon={Wallet} label="Wallet" to="/wallet" collapsed={collapsed} onClick={() => setPinned(true)} />
+            <SidebarItem icon={Newspaper} label="News" to="/news" collapsed={collapsed} onClick={() => setPinned(true)} />
+            <SidebarItem icon={Settings} label="Settings" to="/settings" collapsed={collapsed} onClick={() => setPinned(true)} />
           </nav>
 
           <div className="mt-8 rounded-xl bg-background/40 p-3 text-sm ring-1 ring-white/10">
@@ -135,7 +160,10 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
               <div className="flex items-center gap-2">
                 <span className="rounded-lg bg-[#0f0f0f] px-3 py-2 text-sm font-semibold text-primary ring-1 ring-white/10">Dashboard</span>
                 <button
-                  onClick={() => setCollapsed(false)}
+                  onClick={() => {
+                    setPinned(true);
+                    setCollapsed(false);
+                  }}
                   aria-label="Open sidebar"
                   className="inline-flex size-8 items-center justify-center rounded-lg bg-[#0f0f0f] ring-1 ring-white/10"
                 >
