@@ -44,15 +44,13 @@ const SidebarItem = ({
 };
 
 export default function DashboardLayout({ children }: PropsWithChildren) {
-  const [collapsed, setCollapsed] = useState(true);
-  const [pinned, setPinned] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
+  const [pinned, setPinned] = useState(true);
 
   useEffect(() => {
-    const saved = localStorage.getItem("sidebar:collapsed");
-    const savedPinned = localStorage.getItem("sidebar:pinned");
-    if (saved === null) setCollapsed(true);
-    else setCollapsed(saved === "1");
-    if (savedPinned !== null) setPinned(savedPinned === "1");
+    // Always keep sidebar open and pinned
+    setCollapsed(false);
+    setPinned(true);
   }, []);
   useEffect(() => {
     localStorage.setItem("sidebar:collapsed", collapsed ? "1" : "0");
@@ -75,30 +73,13 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
     setCollapsed(false);
   };
   const scheduleHide = () => {
-    if (pinnedRef.current) return; // do not auto-hide when pinned
-    if (hideTimer.current) clearTimeout(hideTimer.current);
-    hideTimer.current = window.setTimeout(() => setCollapsed(true), 180);
+    // auto-hide disabled
   };
   useEffect(() => {
-    const handleDown = (e: MouseEvent) => {
-      if (!asideRef.current) return;
-      if (asideRef.current.contains(e.target as Node)) return;
-      if (pinnedRef.current) return;
-      setCollapsed(true);
-    };
-    const onScroll = () => {
-      if (pinnedRef.current) return;
-      setCollapsed(true);
-    };
-    document.addEventListener("mousedown", handleDown);
-    window.addEventListener("scroll", onScroll, { passive: true } as any);
-    return () => {
-      document.removeEventListener("mousedown", handleDown);
-      window.removeEventListener("scroll", onScroll as any);
-    };
+    // outside-click and scroll auto-hide disabled
   }, []);
 
-  const sidebarWidth = collapsed ? 0 : 240;
+  const sidebarWidth = 240;
 
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#0a0a0a,rgba(10,10,10,0.95))] text-white">
@@ -109,30 +90,11 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
         {/* Sidebar */}
         <aside
           ref={asideRef}
-          onMouseEnter={openSidebar}
-          onMouseLeave={scheduleHide}
-          className={`rounded-2xl bg-[#0f0f0f] p-3 ring-1 ring-white/10 transition-[width,opacity] duration-200 ${collapsed ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+          className={`rounded-2xl bg-[#0f0f0f] p-3 ring-1 ring-white/10`}
           style={{ width: sidebarWidth }}
         >
           <div className="mb-4 flex items-center justify-between px-1">
-            {!collapsed ? (
-              <div className="px-1 text-lg font-semibold text-primary">Dashboard</div>
-            ) : null}
-            <button
-              onClick={() =>
-                setCollapsed((v) => {
-                  const next = !v;
-                  if (next) setPinned(true); // opening -> pin
-                  else setPinned(false); // closing -> unpin
-                  return next;
-                })
-              }
-              aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-              aria-expanded={!collapsed}
-              className="inline-flex size-8 items-center justify-center rounded-lg bg-white/5 text-white/70 hover:bg-white/10"
-            >
-              {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
-            </button>
+            <div className="px-1 text-lg font-semibold text-primary">Dashboard</div>
           </div>
 
           <nav className="grid gap-1">
@@ -189,12 +151,6 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           {children}
         </section>
       </div>
-      {/* Hover edge reveal zone */}
-      <div
-        onMouseEnter={openSidebar}
-        className="fixed left-0 top-0 z-40 h-screen w-2 md:w-3 bg-transparent"
-        aria-hidden
-      />
     </main>
   );
 }
