@@ -85,7 +85,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#0a0a0a,rgba(10,10,10,0.95))] text-white">
       <div
-        className="mx-auto grid max-w-[1400px] gap-6 px-6 py-6"
+        className="grid w-full gap-6 px-6 py-6"
         style={{ gridTemplateColumns: `${sidebarWidth}px 1fr` }}
       >
         {/* Sidebar */}
