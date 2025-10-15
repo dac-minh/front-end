@@ -109,10 +109,9 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
         {/* Sidebar */}
         <aside
           ref={asideRef}
-          className={`rounded-2xl bg-[#0f0f0f] p-3 ring-1 ring-white/10`}
+          className={`flex h-[calc(100vh-120px)] flex-col justify-between rounded-2xl bg-[#0f0f0f] p-3 ring-1 ring-white/10`}
           style={{ width: sidebarWidth }}
         >
-
           <nav className="grid gap-1">
             <SidebarItem icon={PieChart} label="Dashboard" to="/dashboard" collapsed={collapsed} onClick={() => setPinned(true)} />
             <SidebarItem icon={User} label="Account" to="/account" collapsed={collapsed} onClick={() => setPinned(true)} />
@@ -122,8 +121,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
             <SidebarItem icon={Settings} label="Settings" to="/settings" collapsed={collapsed} onClick={() => setPinned(true)} />
           </nav>
 
-          <div className="mt-8 rounded-xl bg-background/40 p-3 text-sm ring-1 ring-white/10">
-            <div className="mb-2 text-muted-foreground">Quick actions</div>
+          <div className="rounded-xl bg-background/40 p-3 text-sm ring-1 ring-white/10">
             <Link to="/" className="inline-flex items-center gap-2 text-primary hover:underline">
               <LogOut size={16} /> Log out
             </Link>
