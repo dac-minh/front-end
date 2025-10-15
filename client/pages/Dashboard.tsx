@@ -65,8 +65,6 @@ export default function Dashboard() {
     { name: "Litecoin", code: "LTC", value: "$8,291", change: "+0.25%", color: "#b0e3ff", trend: "up" },
     { name: "Ethereum", code: "ETH", value: "$28,291", change: "+0.25%", color: "#7cc7ff", trend: "up" },
     { name: "Solana", code: "SOL", value: "$14,291", change: "+0.15%", color: "#16a34a", trend: "up" },
-    { name: "BNB", code: "BNB", value: "$9,022", change: "-0.10%", color: "#facc15", trend: "down" },
-    { name: "Cardano", code: "ADA", value: "$3,991", change: "+0.05%", color: "#60a5fa", trend: "up" },
   ];
 
   return (
