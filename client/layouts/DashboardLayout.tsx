@@ -10,6 +10,8 @@ import {
   Wallet,
   Search,
   LayoutGrid,
+  Mail,
+  Moon,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -34,10 +36,12 @@ const SidebarItem = ({
       to={to as any}
       title={collapsed ? label : undefined}
       onClick={onClick}
-      className={`flex items-center gap-3 rounded-xl px-3 py-2 text-sm ${active ? "bg-white/10 text-white" : "text-muted-foreground hover:bg-white/5"}`}
+      className={`group flex items-center gap-3 rounded-xl px-3 py-2 text-sm ${active ? "bg-[#1a1a1a] text-white" : "text-white/60 hover:bg-white/5"}`}
     >
-      <Icon size={18} />
-      {!collapsed && <span>{label}</span>}
+      <span className={`inline-flex items-center justify-center rounded-md ${active ? "bg-yellow-300 text-black" : "bg-white/5 text-white/70"} h-5 w-5`}>
+        <Icon size={14} />
+      </span>
+      {!collapsed && <span className="font-medium">{label}</span>}
     </Comp>
   );
 };
@@ -89,11 +93,11 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
             <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
             <input
               placeholder="Search"
-              className="h-10 w-full rounded-xl bg-[#0f0f0f] pl-10 pr-4 text-sm text-white outline-none ring-1 ring-white/10 placeholder:text-muted-foreground"
+              className="h-10 w-full rounded-full bg-[#0f0f0f] pl-10 pr-4 text-sm text-white outline-none ring-1 ring-white/10 placeholder:text-muted-foreground"
             />
           </div>
-          <button className="inline-flex size-9 items-center justify-center rounded-lg bg-[#0f0f0f] ring-1 ring-white/10"><LayoutGrid size={18} /></button>
-          <button className="inline-flex size-9 items-center justify-center rounded-lg bg-[#0f0f0f] ring-1 ring-white/10"><Settings size={18} /></button>
+          <button className="inline-flex size-9 items-center justify-center rounded-lg bg-[#0f0f0f] ring-1 ring-white/10"><Mail size={18} /></button>
+          <button className="inline-flex size-9 items-center justify-center rounded-lg bg-[#0f0f0f] ring-1 ring-white/10"><Moon size={18} /></button>
           <button className="inline-flex size-9 items-center justify-center rounded-lg bg-[#0f0f0f] ring-1 ring-white/10"><Bell size={18} /></button>
           <div className="inline-flex size-10 items-center justify-center rounded-full bg-yellow-300 text-black font-semibold">A</div>
         </div>
