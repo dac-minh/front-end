@@ -62,7 +62,6 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
       {/* Top header */}
       <header className="sticky top-0 z-40 bg-[#0f0f0f]/70 backdrop-blur ring-1 ring-white/10">
         <div className="flex items-center gap-3 px-6 py-3">
-          <div className="text-lg font-semibold text-yellow-300">Dashboard</div>
           <div className="relative mx-auto flex-1 max-w-2xl">
             <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
             <input
@@ -92,21 +91,18 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           className="flex h-[calc(100vh-120px)] flex-col justify-between rounded-2xl bg-black p-3 ring-1 ring-white/10"
           style={{ width: sidebarWidth }}
         >
-          <div className={`mb-2 flex items-center ${collapsed ? "justify-center" : "justify-between"} px-1`}>
-            {!collapsed && (
-              <div className="px-1 text-lg font-semibold text-yellow-300">Dashboard</div>
-            )}
+          <div className={`mb-3 flex ${collapsed ? "justify-center" : "justify-end"} px-1`}>
             <button
               onClick={() => setCollapsed((v) => !v)}
               aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
               aria-expanded={!collapsed}
-              className="inline-flex size-8 items-center justify-center rounded-lg bg-white/5 text-white/70 hover:bg-white/10"
+              className="inline-flex size-7 items-center justify-center rounded-lg bg-white/5 text-white/70 hover:bg-white/10"
             >
-              {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
+              {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
             </button>
           </div>
 
-          <nav className="grid gap-3 mt-2">
+          <nav className="grid gap-3 mt-1">
             <SidebarItem icon={LayoutGrid} label="Dashboard" to="/dashboard" collapsed={collapsed} />
             <SidebarItem icon={User} label="Account" to="/account" collapsed={collapsed} />
             <SidebarItem icon={LineChart} label="Chart" to="/chart" collapsed={collapsed} />
