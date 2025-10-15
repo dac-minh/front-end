@@ -16,6 +16,7 @@ import Wallet from "./pages/Wallet";
 import News from "./pages/News";
 import ChartOverview from "./pages/ChartOverview";
 import CoinDetail from "./pages/CoinDetail";
+import Analysis from "./pages/Analysis";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const App = () => (
           <Route path="/news" element={<News />} />
           <Route path="/chart" element={<ChartOverview />} />
           <Route path="/chart/:symbol" element={<CoinDetail />} />
+          <Route path="/analysis" element={<Analysis />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
