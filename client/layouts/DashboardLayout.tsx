@@ -13,6 +13,7 @@ import {
   Moon,
   ChevronLeft,
   ChevronRight,
+  LayoutGrid,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -34,9 +35,9 @@ const SidebarItem = ({
     <Comp
       to={to as any}
       title={collapsed ? label : undefined}
-      className={`group flex items-center ${collapsed ? "justify-center gap-0 px-0" : "gap-3 px-3"} rounded-xl py-2 text-sm ${active ? "bg-[#1a1a1a] text-white" : "text-white/60 hover:bg-white/5"}`}
+      className={`group flex items-center ${collapsed ? "justify-center gap-0 px-0" : "gap-3 px-4"} ${collapsed ? "rounded-xl" : "rounded-full"} py-2 text-sm ${active ? "bg-[#2b2b2b] text-white" : "text-white/70 hover:bg-white/5"}`}
     >
-      <span className={`inline-flex h-5 w-5 items-center justify-center rounded-md ${active ? "bg-yellow-300 text-black" : "bg-white/5 text-white/70"}`}>
+      <span className={`inline-flex h-5 w-5 items-center justify-center rounded-md ${active ? "bg-yellow-300 text-black" : "text-white/65"}`}>
         <Icon size={14} />
       </span>
       {!collapsed && <span className="font-medium">{label}</span>}
@@ -88,7 +89,7 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
       >
         {/* Sidebar */}
         <aside
-          className="flex h-[calc(100vh-120px)] flex-col justify-between rounded-2xl bg-[#0f0f0f] p-3 ring-1 ring-white/10"
+          className="flex h-[calc(100vh-120px)] flex-col justify-between rounded-2xl bg-black p-3 ring-1 ring-white/10"
           style={{ width: sidebarWidth }}
         >
           <div className={`mb-2 flex items-center ${collapsed ? "justify-center" : "justify-between"} px-1`}>
@@ -105,8 +106,8 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
             </button>
           </div>
 
-          <nav className="grid gap-1">
-            <SidebarItem icon={PieChart} label="Dashboard" to="/dashboard" collapsed={collapsed} />
+          <nav className="grid gap-3 mt-2">
+            <SidebarItem icon={LayoutGrid} label="Dashboard" to="/dashboard" collapsed={collapsed} />
             <SidebarItem icon={User} label="Account" to="/account" collapsed={collapsed} />
             <SidebarItem icon={LineChart} label="Chart" to="/chart" collapsed={collapsed} />
             <SidebarItem icon={Wallet} label="Wallet" to="/wallet" collapsed={collapsed} />
