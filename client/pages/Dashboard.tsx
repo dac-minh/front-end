@@ -2,7 +2,14 @@ import DashboardLayout from "@/layouts/DashboardLayout";
 import { MoreHorizontal } from "lucide-react";
 import { Link } from "react-router-dom";
 
-type Asset = { name: string; code: string; value: string; change: string; color: string; trend: "up" | "down" };
+type Asset = {
+  name: string;
+  code: string;
+  value: string;
+  change: string;
+  color: string;
+  trend: "up" | "down";
+};
 
 const Sparkline = ({ color = "#fde047" }: { color?: string }) => (
   <svg viewBox="0 0 120 40" className="h-10 w-full">
@@ -38,7 +45,11 @@ const MiniAssetCard = ({ a }: { a: Asset }) => (
     </div>
     <div className="mt-2 flex items-center justify-between">
       <div className="text-white/90">{a.value}</div>
-      <span className={`text-xs ${a.trend === "up" ? "text-emerald-400" : "text-red-400"}`}>{a.change}</span>
+      <span
+        className={`text-xs ${a.trend === "up" ? "text-emerald-400" : "text-red-400"}`}
+      >
+        {a.change}
+      </span>
     </div>
     <div className="mt-2">
       <Sparkline color="#fde047" />
@@ -46,12 +57,27 @@ const MiniAssetCard = ({ a }: { a: Asset }) => (
   </Link>
 );
 
-const PortfolioItem = ({ name, code, pct, color }: { name: string; code: string; pct: number; color: string }) => (
+const PortfolioItem = ({
+  name,
+  code,
+  pct,
+  color,
+}: {
+  name: string;
+  code: string;
+  pct: number;
+  color: string;
+}) => (
   <div className="flex items-center justify-between rounded-xl bg-black px-3 py-2 text-black ring-1 ring-black/40">
     <div className="flex items-center gap-3">
-      <span className="inline-flex size-7 items-center justify-center rounded-full ring-2 ring-yellow-400" style={{ backgroundColor: color }} />
+      <span
+        className="inline-flex size-7 items-center justify-center rounded-full ring-2 ring-yellow-400"
+        style={{ backgroundColor: color }}
+      />
       <div className="leading-4">
-        <div className="text-[13px] font-semibold text-yellow-50/90">{name}</div>
+        <div className="text-[13px] font-semibold text-yellow-50/90">
+          {name}
+        </div>
         <div className="text-[10px] text-yellow-50/70">{code}</div>
       </div>
     </div>
@@ -61,10 +87,38 @@ const PortfolioItem = ({ name, code, pct, color }: { name: string; code: string;
 
 export default function Dashboard() {
   const assets: Asset[] = [
-    { name: "Bitcoin", code: "BTC", value: "$52,291", change: "+0.25%", color: "#f2b705", trend: "up" },
-    { name: "Litecoin", code: "LTC", value: "$8,291", change: "+0.25%", color: "#b0e3ff", trend: "up" },
-    { name: "Ethereum", code: "ETH", value: "$28,291", change: "+0.25%", color: "#7cc7ff", trend: "up" },
-    { name: "Solana", code: "SOL", value: "$14,291", change: "+0.15%", color: "#16a34a", trend: "up" },
+    {
+      name: "Bitcoin",
+      code: "BTC",
+      value: "$52,291",
+      change: "+0.25%",
+      color: "#f2b705",
+      trend: "up",
+    },
+    {
+      name: "Litecoin",
+      code: "LTC",
+      value: "$8,291",
+      change: "+0.25%",
+      color: "#b0e3ff",
+      trend: "up",
+    },
+    {
+      name: "Ethereum",
+      code: "ETH",
+      value: "$28,291",
+      change: "+0.25%",
+      color: "#7cc7ff",
+      trend: "up",
+    },
+    {
+      name: "Solana",
+      code: "SOL",
+      value: "$14,291",
+      change: "+0.15%",
+      color: "#16a34a",
+      trend: "up",
+    },
   ];
 
   return (
@@ -74,13 +128,20 @@ export default function Dashboard() {
           <div>
             <div className="text-xs text-white/60">TOTAL BALANCE</div>
             <div className="mt-1 text-4xl sm:text-5xl font-extrabold tracking-tight">
-              $154,510<span className="text-white/40 text-2xl align-top">.00</span>
+              $154,510
+              <span className="text-white/40 text-2xl align-top">.00</span>
             </div>
           </div>
           <div className="hidden gap-4 sm:flex">
-            <div className="rounded-xl bg-[#0c0c0c] px-3 py-2 text-xs text-white/70 ring-1 ring-white/10">To <span className="ml-1 text-red-400">-2.5%</span></div>
-            <div className="rounded-xl bg-[#0c0c0c] px-3 py-2 text-xs text-white/70 ring-1 ring-white/10">7 Days <span className="ml-1 text-emerald-400">+4.25%</span></div>
-            <div className="rounded-xl bg-[#0c0c0c] px-3 py-2 text-xs text-white/70 ring-1 ring-white/10">30 Days <span className="ml-1 text-emerald-400">+11.5%</span></div>
+            <div className="rounded-xl bg-[#0c0c0c] px-3 py-2 text-xs text-white/70 ring-1 ring-white/10">
+              To <span className="ml-1 text-red-400">-2.5%</span>
+            </div>
+            <div className="rounded-xl bg-[#0c0c0c] px-3 py-2 text-xs text-white/70 ring-1 ring-white/10">
+              7 Days <span className="ml-1 text-emerald-400">+4.25%</span>
+            </div>
+            <div className="rounded-xl bg-[#0c0c0c] px-3 py-2 text-xs text-white/70 ring-1 ring-white/10">
+              30 Days <span className="ml-1 text-emerald-400">+11.5%</span>
+            </div>
           </div>
         </div>
 
@@ -92,35 +153,79 @@ export default function Dashboard() {
 
         <div className="mt-6 grid gap-6 lg:grid-cols-12">
           <div className="lg:col-span-4 space-y-3 rounded-2xl bg-yellow-300 p-5 ring-2 ring-yellow-400/50">
-            <div className="mb-1 text-sm font-extrabold tracking-wide text-black">My Portfolio</div>
+            <div className="mb-1 text-sm font-extrabold tracking-wide text-black">
+              My Portfolio
+            </div>
             <div className="grid gap-3">
-              <PortfolioItem name="Bitcoin" code="BTC" pct={37} color="#f2b705" />
-              <PortfolioItem name="Tether" code="USDT" pct={23} color="#f5f5f5" />
-              <PortfolioItem name="Ethereum" code="ETH" pct={20} color="#7cc7ff" />
-              <PortfolioItem name="Ripple" code="XLA" pct={20} color="#60a5fa" />
-              <PortfolioItem name="Ethereum" code="ETH" pct={20} color="#7cc7ff" />
+              <PortfolioItem
+                name="Bitcoin"
+                code="BTC"
+                pct={37}
+                color="#f2b705"
+              />
+              <PortfolioItem
+                name="Tether"
+                code="USDT"
+                pct={23}
+                color="#f5f5f5"
+              />
+              <PortfolioItem
+                name="Ethereum"
+                code="ETH"
+                pct={20}
+                color="#7cc7ff"
+              />
+              <PortfolioItem
+                name="Ripple"
+                code="XLA"
+                pct={20}
+                color="#60a5fa"
+              />
+              <PortfolioItem
+                name="Ethereum"
+                code="ETH"
+                pct={20}
+                color="#7cc7ff"
+              />
             </div>
           </div>
 
           <div className="lg:col-span-8 rounded-2xl bg-[#0f0f0f] p-5 ring-1 ring-white/10">
             <div className="mb-2 flex items-center justify-between">
-              <div className="text-sm font-semibold text-yellow-200/80">Chart</div>
+              <div className="text-sm font-semibold text-yellow-200/80">
+                Chart
+              </div>
               <div className="flex items-center gap-2">
                 {(["1h", "2h", "3h", "1d", "1w", "1m"] as const).map((t) => (
-                  <button key={t} className={`rounded-full px-3 py-1 text-xs ring-1 ring-white/10 ${t === "1h" ? "bg-yellow-300 text-black" : "bg-transparent text-white/70"}`}>{t}</button>
+                  <button
+                    key={t}
+                    className={`rounded-full px-3 py-1 text-xs ring-1 ring-white/10 ${t === "1h" ? "bg-yellow-300 text-black" : "bg-transparent text-white/70"}`}
+                  >
+                    {t}
+                  </button>
                 ))}
-                <button className="inline-flex items-center rounded-lg bg-white/5 p-2 text-white/70 ring-1 ring-white/10 hover:bg-white/10"><MoreHorizontal size={16} /></button>
+                <button className="inline-flex items-center rounded-lg bg-white/5 p-2 text-white/70 ring-1 ring-white/10 hover:bg-white/10">
+                  <MoreHorizontal size={16} />
+                </button>
               </div>
             </div>
             <div className="relative h-[340px] overflow-hidden rounded-xl bg-gradient-to-b from-yellow-300/10 via-yellow-400/5 to-transparent">
-              <svg viewBox="0 0 800 260" className="absolute inset-0 h-full w-full opacity-90">
+              <svg
+                viewBox="0 0 800 260"
+                className="absolute inset-0 h-full w-full opacity-90"
+              >
                 <defs>
                   <linearGradient id="cg" x1="0" x2="0" y1="0" y2="1">
                     <stop stopColor="#fde047" offset="0%" />
                     <stop stopColor="transparent" offset="100%" />
                   </linearGradient>
                 </defs>
-                <path d="M0,210 L40,200 L80,190 L120,195 L160,170 L200,185 L240,160 L280,200 L320,190 L360,210 L400,180 L440,160 L480,190 L520,170 L560,180 L600,150 L640,170 L680,160 L720,175 L760,165 L800,140" stroke="#fde047" strokeWidth="3" fill="url(#cg)" />
+                <path
+                  d="M0,210 L40,200 L80,190 L120,195 L160,170 L200,185 L240,160 L280,200 L320,190 L360,210 L400,180 L440,160 L480,190 L520,170 L560,180 L600,150 L640,170 L680,160 L720,175 L760,165 L800,140"
+                  stroke="#fde047"
+                  strokeWidth="3"
+                  fill="url(#cg)"
+                />
               </svg>
               <div className="absolute inset-0 grid grid-rows-6 gap-y-3">
                 {Array.from({ length: 6 }).map((_, i) => (

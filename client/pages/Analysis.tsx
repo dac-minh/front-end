@@ -16,16 +16,28 @@ export default function Analysis() {
 
         <Tabs defaultValue="tab1" className="w-full">
           <TabsList className="grid w-full grid-cols-4 bg-transparent">
-            <TabsTrigger value="tab1" className="rounded-md bg-[#0f0f0f] text-white ring-1 ring-white/10 data-[state=active]:bg-yellow-300 data-[state=active]:text-black">
+            <TabsTrigger
+              value="tab1"
+              className="rounded-md bg-[#0f0f0f] text-white ring-1 ring-white/10 data-[state=active]:bg-yellow-300 data-[state=active]:text-black"
+            >
               Phân tích chi tiết Coin
             </TabsTrigger>
-            <TabsTrigger value="tab2" className="rounded-md bg-[#0f0f0f] text-white ring-1 ring-white/10 data-[state=active]:bg-yellow-300 data-[state=active]:text-black">
+            <TabsTrigger
+              value="tab2"
+              className="rounded-md bg-[#0f0f0f] text-white ring-1 ring-white/10 data-[state=active]:bg-yellow-300 data-[state=active]:text-black"
+            >
               Nhận định & Tin tức thị trường
             </TabsTrigger>
-            <TabsTrigger value="tab3" className="rounded-md bg-[#0f0f0f] text-white ring-1 ring-white/10 data-[state=active]:bg-yellow-300 data-[state=active]:text-black">
+            <TabsTrigger
+              value="tab3"
+              className="rounded-md bg-[#0f0f0f] text-white ring-1 ring-white/10 data-[state=active]:bg-yellow-300 data-[state=active]:text-black"
+            >
               Tổng quan thị trường
             </TabsTrigger>
-            <TabsTrigger value="tab4" className="rounded-md bg-[#0f0f0f] text-white ring-1 ring-white/10 data-[state=active]:bg-yellow-300 data-[state=active]:text-black">
+            <TabsTrigger
+              value="tab4"
+              className="rounded-md bg-[#0f0f0f] text-white ring-1 ring-white/10 data-[state=active]:bg-yellow-300 data-[state=active]:text-black"
+            >
               So sánh & Danh mục đầu tư
             </TabsTrigger>
           </TabsList>
