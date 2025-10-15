@@ -9,8 +9,7 @@ import {
   User,
   Wallet,
   Search,
-  ChevronLeft,
-  ChevronRight,
+  LayoutGrid,
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -83,6 +82,22 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
 
   return (
     <main className="min-h-screen bg-[linear-gradient(180deg,#0a0a0a,rgba(10,10,10,0.95))] text-white">
+      <header className="sticky top-0 z-40 bg-[#0f0f0f]/70 backdrop-blur ring-1 ring-white/10">
+        <div className="flex items-center gap-3 px-6 py-3">
+          <div className="text-lg font-semibold text-yellow-300">Dashboard</div>
+          <div className="relative mx-auto flex-1 max-w-2xl">
+            <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
+            <input
+              placeholder="Search"
+              className="h-10 w-full rounded-xl bg-[#0f0f0f] pl-10 pr-4 text-sm text-white outline-none ring-1 ring-white/10 placeholder:text-muted-foreground"
+            />
+          </div>
+          <button className="inline-flex size-9 items-center justify-center rounded-lg bg-[#0f0f0f] ring-1 ring-white/10"><LayoutGrid size={18} /></button>
+          <button className="inline-flex size-9 items-center justify-center rounded-lg bg-[#0f0f0f] ring-1 ring-white/10"><Settings size={18} /></button>
+          <button className="inline-flex size-9 items-center justify-center rounded-lg bg-[#0f0f0f] ring-1 ring-white/10"><Bell size={18} /></button>
+          <div className="inline-flex size-10 items-center justify-center rounded-full bg-yellow-300 text-black font-semibold">A</div>
+        </div>
+      </header>
       <div
         className="grid w-full gap-6 px-6 py-6"
         style={{ gridTemplateColumns: `${sidebarWidth}px 1fr` }}
@@ -93,9 +108,6 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
           className={`rounded-2xl bg-[#0f0f0f] p-3 ring-1 ring-white/10`}
           style={{ width: sidebarWidth }}
         >
-          <div className="mb-4 flex items-center justify-between px-1">
-            <div className="px-1 text-lg font-semibold text-primary">Dashboard</div>
-          </div>
 
           <nav className="grid gap-1">
             <SidebarItem icon={PieChart} label="Dashboard" to="/dashboard" collapsed={collapsed} onClick={() => setPinned(true)} />
@@ -116,38 +128,6 @@ export default function DashboardLayout({ children }: PropsWithChildren) {
 
         {/* Content */}
         <section className="space-y-6">
-          {/* Top bar */}
-          <div className="flex items-center gap-3">
-            {collapsed && (
-              <div className="flex items-center gap-2">
-                <span className="rounded-lg bg-[#0f0f0f] px-3 py-2 text-sm font-semibold text-primary ring-1 ring-white/10">Dashboard</span>
-                <button
-                  onClick={() => {
-                    setPinned(true);
-                    setCollapsed(false);
-                  }}
-                  aria-label="Open sidebar"
-                  className="inline-flex size-8 items-center justify-center rounded-lg bg-[#0f0f0f] ring-1 ring-white/10"
-                >
-                  <ChevronRight size={16} />
-                </button>
-              </div>
-            )}
-            <div className="relative flex-1">
-              <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
-              <input
-                placeholder="Search"
-                className="h-10 w-full rounded-xl bg-[#0f0f0f] pl-10 pr-4 text-sm text-white outline-none ring-1 ring-white/10 placeholder:text-muted-foreground"
-              />
-            </div>
-            <button className="inline-flex size-10 items-center justify-center rounded-full bg-[#0f0f0f] ring-1 ring-white/10">
-              <Bell size={18} />
-            </button>
-            <div className="inline-flex size-10 items-center justify-center rounded-full bg-yellow-300 text-black font-semibold">
-              A
-            </div>
-          </div>
-
           {children}
         </section>
       </div>
