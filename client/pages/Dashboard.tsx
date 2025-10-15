@@ -1,107 +1,102 @@
 import DashboardLayout from "@/layouts/DashboardLayout";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, MoreHorizontal, SlidersHorizontal, TrendingUp, TrendingDown } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const AssetPill = ({
-  name,
-  code,
-  pct,
-  color,
-}: {
-  name: string;
-  code: string;
-  pct: number;
-  color: string;
-}) => (
-  <div className="flex items-center justify-between rounded-xl bg-background/40 px-3 py-2 ring-1 ring-white/10">
+type Asset = { name: string; code: string; value: string; change: string; color: string; trend: "up" | "down" };
+
+const Sparkline = ({ color = "#fde047" }: { color?: string }) => (
+  <svg viewBox="0 0 120 40" className="h-10 w-full">
+    <defs>
+      <linearGradient id="sg" x1="0" x2="0" y1="0" y2="1">
+        <stop stopColor={color} offset="0%" />
+        <stop stopColor="transparent" offset="100%" />
+      </linearGradient>
+    </defs>
+    <path
+      d="M0,30 L10,28 L20,24 L30,26 L40,20 L50,23 L60,18 L70,26 L80,22 L90,28 L100,21 L110,19 L120,24"
+      stroke={color}
+      strokeWidth="2"
+      fill="url(#sg)"
+    />
+  </svg>
+);
+
+const MiniAssetCard = ({ a }: { a: Asset }) => (
+  <Link
+    to={`/chart/${a.code}`}
+    className="group rounded-xl bg-[#0f0f0f] p-4 ring-1 ring-white/10 transition-colors hover:bg-white/5"
+  >
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-2">
+        <span
+          className="inline-flex size-6 rounded-full ring-2 ring-white/10"
+          style={{ backgroundColor: a.color }}
+        />
+        <span className="text-sm text-white/90">{a.name}</span>
+      </div>
+      <ChevronRight size={16} className="text-white/30" />
+    </div>
+    <div className="mt-2 flex items-center justify-between">
+      <div className="text-white/90">{a.value}</div>
+      {a.trend === "up" ? (
+        <span className="inline-flex items-center gap-1 text-xs text-emerald-400">
+          <TrendingUp size={14} /> {a.change}
+        </span>
+      ) : (
+        <span className="inline-flex items-center gap-1 text-xs text-red-400">
+          <TrendingDown size={14} /> {a.change}
+        </span>
+      )}
+    </div>
+    <div className="mt-2">
+      <Sparkline color="#fde047" />
+    </div>
+  </Link>
+);
+
+const PortfolioItem = ({ name, code, pct, color }: { name: string; code: string; pct: number; color: string }) => (
+  <div className="flex items-center justify-between rounded-xl bg-black px-3 py-2 text-black ring-1 ring-black/40">
     <div className="flex items-center gap-3">
-      <span
-        className="inline-flex size-7 items-center justify-center rounded-full"
-        style={{ backgroundColor: color }}
-      />
-      <div>
-        <div className="text-xs text-muted-foreground leading-4">{name}</div>
-        <div className="text-[10px] text-muted-foreground/70">{code}</div>
+      <span className="inline-flex size-7 items-center justify-center rounded-full ring-2 ring-yellow-400" style={{ backgroundColor: color }} />
+      <div className="leading-4">
+        <div className="text-[13px] font-semibold text-yellow-50/90">{name}</div>
+        <div className="text-[10px] text-yellow-50/70">{code}</div>
       </div>
     </div>
-    <div className="text-sm font-semibold text-white">{pct}%</div>
+    <div className="text-sm font-semibold text-yellow-50">{pct}%</div>
   </div>
 );
 
 export default function Dashboard() {
+  const assets: Asset[] = [
+    { name: "Bitcoin", code: "BTC", value: "$52,291", change: "+0.25%", color: "#f2b705", trend: "up" },
+    { name: "Litecoin", code: "LTC", value: "$8,291", change: "+0.25%", color: "#b0e3ff", trend: "up" },
+    { name: "Ethereum", code: "ETH", value: "$28,291", change: "+0.25%", color: "#7cc7ff", trend: "up" },
+    { name: "Solana", code: "SOL", value: "$14,291", change: "+0.15%", color: "#16a34a", trend: "up" },
+    { name: "BNB", code: "BNB", value: "$9,022", change: "-0.10%", color: "#facc15", trend: "down" },
+    { name: "Cardano", code: "ADA", value: "$3,991", change: "+0.05%", color: "#60a5fa", trend: "up" },
+  ];
+
   return (
     <DashboardLayout>
-      {/* Cards row */}
+      {/* Top summary */}
       <div className="grid gap-6 md:grid-cols-12">
         <div className="md:col-span-12 rounded-2xl bg-[#101010] p-6 ring-1 ring-white/10">
-          <div className="text-sm text-muted-foreground">TOTAL BALANCE</div>
-          <div className="mt-1 text-4xl sm:text-5xl font-extrabold tracking-tight">
-            $154,510
-            <span className="text-white/40 text-2xl align-top">.00</span>
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="text-sm text-yellow-200/70">TOTAL BALANCE</div>
+              <div className="mt-1 text-4xl sm:text-5xl font-extrabold tracking-tight">
+                $154,510<span className="text-white/40 text-2xl align-top">.00</span>
+              </div>
+            </div>
+            <div className="hidden items-center gap-2 sm:flex">
+              <button className="inline-flex items-center gap-2 rounded-lg bg-white/5 px-3 py-2 text-xs text-white/80 ring-1 ring-white/10 hover:bg-white/10"><SlidersHorizontal size={14} /> Filters</button>
+              <button className="inline-flex items-center rounded-lg bg-white/5 p-2 text-white/70 ring-1 ring-white/10 hover:bg-white/10"><MoreHorizontal size={16} /></button>
+            </div>
           </div>
           <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
-            {[
-              {
-                name: "Bitcoin",
-                code: "BTC",
-                value: "$52,291",
-                change: "+0.25%",
-                color: "#f2b705",
-              },
-              {
-                name: "Litecoin",
-                code: "LTC",
-                value: "$8,291",
-                change: "+0.25%",
-                color: "#b0e3ff",
-              },
-              {
-                name: "Ethereum",
-                code: "ETH",
-                value: "$28,291",
-                change: "+0.25%",
-                color: "#7cc7ff",
-              },
-              {
-                name: "Solana",
-                code: "SOL",
-                value: "$14,291",
-                change: "+0.15%",
-                color: "#16a34a",
-              },
-              {
-                name: "BNB",
-                code: "BNB",
-                value: "$9,022",
-                change: "-0.10%",
-                color: "#facc15",
-              },
-              {
-                name: "Cardano",
-                code: "ADA",
-                value: "$3,991",
-                change: "+0.05%",
-                color: "#60a5fa",
-              },
-            ].map((a, idx) => (
-              <Link
-                key={idx}
-                to={`/chart/${a.code}`}
-                className="rounded-xl bg-[#0f0f0f] p-4 ring-1 ring-white/10 transition hover:bg-white/5"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span
-                      className="inline-flex size-6 rounded-full"
-                      style={{ backgroundColor: a.color }}
-                    />
-                    <span className="text-sm text-white/90">{a.name}</span>
-                  </div>
-                  <ChevronRight size={16} className="text-white/30" />
-                </div>
-                <div className="mt-3 text-white/90">{a.value}</div>
-                <div className="text-xs text-green-400">{a.change}</div>
-              </Link>
+            {assets.map((a) => (
+              <MiniAssetCard key={a.code} a={a} />
             ))}
           </div>
         </div>
@@ -109,51 +104,46 @@ export default function Dashboard() {
 
       {/* Bottom split */}
       <div className="grid gap-6 lg:grid-cols-12">
-        <div className="lg:col-span-4 space-y-3 rounded-2xl bg-[#101010] p-5 ring-1 ring-white/10">
-          <div className="text-sm font-semibold">My Portfolio</div>
+        {/* Portfolio */}
+        <div className="lg:col-span-4 space-y-3 rounded-2xl bg-yellow-300 p-5 ring-2 ring-yellow-400/50">
+          <div className="mb-1 text-sm font-extrabold tracking-wide text-black">My Portfolio</div>
           <div className="grid gap-3">
-            <AssetPill name="Bitcoin" code="BTC" pct={37} color="#f2b705" />
-            <AssetPill name="Tether" code="USDT" pct={23} color="#f5f5f5" />
-            <AssetPill name="Ethereum" code="ETH" pct={20} color="#7cc7ff" />
-            <AssetPill name="Ripple" code="XLA" pct={20} color="#60a5fa" />
+            <PortfolioItem name="Bitcoin" code="BTC" pct={37} color="#f2b705" />
+            <PortfolioItem name="Tether" code="USDT" pct={23} color="#f5f5f5" />
+            <PortfolioItem name="Ethereum" code="ETH" pct={20} color="#7cc7ff" />
+            <PortfolioItem name="Ripple" code="XLA" pct={20} color="#60a5fa" />
           </div>
         </div>
+
+        {/* Chart */}
         <div className="lg:col-span-8 rounded-2xl bg-[#101010] p-5 ring-1 ring-white/10">
           <div className="mb-2 flex items-center justify-between">
-            <div className="text-sm text-muted-foreground">Chart</div>
+            <div className="text-sm font-semibold text-yellow-200/80">Chart</div>
             <div className="flex items-center gap-2">
-              {["1h", "1d", "1w", "1m"].map((t) => (
-                <button
-                  key={t}
-                  className={`rounded-full px-3 py-1 text-xs ring-1 ring-white/10 ${t === "1w" ? "bg-primary text-black" : "bg-transparent text-white/70"}`}
-                >
-                  {t}
-                </button>
+              {(["1h", "1d", "1w", "1m"] as const).map((t) => (
+                <button key={t} className={`rounded-full px-3 py-1 text-xs ring-1 ring-white/10 ${t === "1w" ? "bg-yellow-300 text-black" : "bg-transparent text-white/70"}`}>{t}</button>
               ))}
+              <button className="inline-flex items-center rounded-lg bg-white/5 p-2 text-white/70 ring-1 ring-white/10 hover:bg-white/10"><MoreHorizontal size={16} /></button>
             </div>
           </div>
-          {/* Faux line chart */}
-          <div className="relative h-[300px] overflow-hidden rounded-xl bg-gradient-to-b from-yellow-300/15 via-yellow-400/10 to-transparent">
-            <svg
-              viewBox="0 0 600 200"
-              className="absolute inset-0 h-full w-full opacity-90"
-            >
+          <div className="relative h-[320px] overflow-hidden rounded-xl bg-gradient-to-b from-yellow-300/10 via-yellow-400/5 to-transparent">
+            <svg viewBox="0 0 800 260" className="absolute inset-0 h-full w-full opacity-90">
               <defs>
-                <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+                <linearGradient id="cg" x1="0" x2="0" y1="0" y2="1">
                   <stop stopColor="#fde047" offset="0%" />
                   <stop stopColor="transparent" offset="100%" />
                 </linearGradient>
               </defs>
-              <path
-                d="M0,170 L40,160 L80,150 L120,155 L160,130 L200,145 L240,120 L280,160 L320,150 L360,170 L400,140 L440,120 L480,150 L520,130 L560,140 L600,110"
-                stroke="#fde047"
-                strokeWidth="3"
-                fill="url(#g)"
-              />
+              <path d="M0,210 L40,200 L80,190 L120,195 L160,170 L200,185 L240,160 L280,200 L320,190 L360,210 L400,180 L440,160 L480,190 L520,170 L560,180 L600,150 L640,170 L680,160 L720,175 L760,165 L800,140" stroke="#fde047" strokeWidth="3" fill="url(#cg)" />
             </svg>
+            <div className="absolute inset-0 grid grid-rows-6 gap-y-3">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="h-px w-full bg-yellow-200/10" />
+              ))}
+            </div>
             <div className="absolute bottom-0 left-0 right-0 grid grid-cols-24 gap-1 px-3 pb-2">
               {Array.from({ length: 24 }).map((_, i) => (
-                <div key={i} className="h-[20px] rounded bg-yellow-200/20" />
+                <div key={i} className="h-[18px] rounded bg-yellow-200/15" />
               ))}
             </div>
           </div>
