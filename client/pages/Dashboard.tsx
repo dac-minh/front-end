@@ -84,7 +84,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {assets.map((a) => (
             <MiniAssetCard key={a.code} a={a} />
           ))}
