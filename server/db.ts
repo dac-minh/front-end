@@ -4,10 +4,13 @@ function createConfig(): PoolConfig {
   const url = process.env.DATABASE_URL;
   if (!url) {
     throw new Error(
-      "DATABASE_URL is not set. Set it in project settings to connect to your Postgres database."
+      "DATABASE_URL is not set. Set it in project settings to connect to your Postgres database.",
     );
   }
-  const sslMode = process.env.PGSSLMODE || /sslmode=require/.test(url) ? "require" : "disable";
+  const sslMode =
+    process.env.PGSSLMODE || /sslmode=require/.test(url)
+      ? "require"
+      : "disable";
   const config: PoolConfig = { connectionString: url } as PoolConfig;
   if (sslMode !== "disable") {
     // Accept self-signed certs for common managed Postgres providers
