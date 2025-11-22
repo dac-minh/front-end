@@ -35,7 +35,7 @@ const App = () => (
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/news" element={<News />} />
           <Route path="/chart" element={<ChartOverview />} />
-          <Route path="/chart/:symbol" element={<CoinDetail />} />
+          <Route path="/chart/:coin_id" element={<CoinDetail />} />
           <Route path="/analysis" element={<Analysis />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
